@@ -1,6 +1,8 @@
 const jwt = require('jsonwebtoken');
+
 const secret = process.env.TOKEN_SECRET || 'secretForToken';
 
+// eslint-disable-next-line consistent-return
 const authMiddleware = (req, res, next) => {
   const {authorization} = req.headers;
 
@@ -18,8 +20,9 @@ const authMiddleware = (req, res, next) => {
 
   try {
     const tokenPayload = jwt.verify(token, secret);
+    const {_id} = tokenPayload;
     req.user = {
-      userId: tokenPayload._id,
+      userId: _id,
     };
 
     next();

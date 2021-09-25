@@ -1,4 +1,5 @@
 const express = require('express');
+
 const router = express.Router();
 const {
   getProfileInfo,
@@ -7,8 +8,14 @@ const {
 } = require('../controllers/meControllers');
 
 // /api/v1/users/me
-router.route('/').get(getProfileInfo).delete(deleteProfile);
+// prettier-ignore
+router.route('/')
+  .get(getProfileInfo)
+  .delete(deleteProfile);
+
 // /api/v1/users/me/password
-router.route('/password').patch(changeProfilePassword);
+// prettier-ignore
+router.route('/password')
+  .patch(changeProfilePassword);
 
 module.exports = router;

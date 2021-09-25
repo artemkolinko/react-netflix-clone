@@ -4,8 +4,8 @@ const axios = require('axios').default;
 const getShows = async (req, res) => {
   let {offset, limit} = req.query;
 
-  offset = parseInt(offset) || 0;
-  limit = parseInt(limit) || 10;
+  offset = parseInt(offset, 10) || 0;
+  limit = parseInt(limit, 10) || 10;
 
   try {
     const response = await axios.get('https://api.tvmaze.com/shows');
