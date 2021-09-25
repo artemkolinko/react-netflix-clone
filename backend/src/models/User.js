@@ -1,15 +1,10 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
 
+const {showSchema} = require('./Show');
+
 const regExpEmail =
   /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-
-const showSchema = new mongoose.Schema({
-  id: Number,
-  name: String,
-  image: String,
-  url: String,
-});
 
 const userSchema = new mongoose.Schema(
   {
