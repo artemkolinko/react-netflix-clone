@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
 const axios = require('axios').default;
 const {Show} = require('./models/Show');
 
-const showAmount = 100;
+const showsQuantity = 100;
 
 const seeder = async () => {
   try {
@@ -14,7 +14,7 @@ const seeder = async () => {
 
     // Get shows from API
     const response = await axios.get('https://api.tvmaze.com/shows');
-    const chank = response.data.slice(0, showAmount);
+    const chank = response.data.slice(0, showsQuantity);
     const chankMin = chank.map(
       ({id, name, image, url, summary, rating, genres}) => ({
         id,
