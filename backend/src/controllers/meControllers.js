@@ -1,5 +1,6 @@
-const User = require('../models/User');
+/* eslint-disable consistent-return */
 const bcrypt = require('bcrypt');
+const User = require('../models/User');
 
 // GET /api/v1/users/me
 const getProfileInfo = async (req, res) => {
