@@ -1,5 +1,4 @@
-// const axios = require('axios').default;
-const {Show} = require('../models/Show');
+const Show = require('../models/Show');
 
 // /api/v1/shows
 const getShows = async (req, res) => {
