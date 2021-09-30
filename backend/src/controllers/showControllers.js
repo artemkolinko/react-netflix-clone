@@ -1,15 +1,16 @@
-const axios = require('axios').default;
+// const axios = require('axios').default;
+const {Show} = require('../models/Show');
 
 // /api/v1/shows
 const getShows = async (req, res) => {
   let {offset, limit} = req.query;
 
   offset = parseInt(offset, 10) || 0;
-  limit = parseInt(limit, 10) || 10;
+  limit = parseInt(limit, 10) || 100;
 
   try {
-    const response = await axios.get('https://api.tvmaze.com/shows');
-    res.send(response.data.slice(offset, offset + limit));
+    const shows = await Show.find({}, '-__v').skip(offset).limit(limit);
+    res.json({shows});
   } catch (error) {
     res.status(500).json({message: error.message});
   }

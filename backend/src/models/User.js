@@ -1,8 +1,6 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
 
-const {showSchema} = require('./Show');
-
 const regExpEmail =
   /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
@@ -23,7 +21,7 @@ const userSchema = new mongoose.Schema(
       maxlength: [20, 'Maximum password length is 20 characters'],
       trim: true,
     },
-    favorites: [showSchema],
+    favorites: [mongoose.Schema.Types.ObjectId],
   },
   {
     timestamps: true,

@@ -5,6 +5,9 @@ const {
   getProfileInfo,
   deleteProfile,
   changeProfilePassword,
+  addShowToFavorites,
+  deleteShowFromFavorites,
+  getShowFavorites,
 } = require('../controllers/meControllers');
 
 // /api/v1/users/me
@@ -17,5 +20,12 @@ router.route('/')
 // prettier-ignore
 router.route('/password')
   .patch(changeProfilePassword);
+
+// /api/v1/users/me/favorites
+// prettier-ignore
+router.route('/favorites')
+  .get(getShowFavorites)
+  .post(addShowToFavorites)
+  .delete(deleteShowFromFavorites);
 
 module.exports = router;
