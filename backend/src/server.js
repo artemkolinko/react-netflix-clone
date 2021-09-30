@@ -17,7 +17,6 @@ app.use('/api/v1/auth', authRouter);
 
 app.use(authMiddleware);
 app.use('/api/v1/users/me', meRouter);
-// POST/DELETE /users/:id/favorites
 
 app.get('*', (req, res) => {
   res.status(404).json({

@@ -1,6 +1,7 @@
 /* eslint-disable consistent-return */
 const bcrypt = require('bcrypt');
 const User = require('../models/User');
+const {Show} = require('../models/Show');
 
 // GET /api/v1/users/me
 const getProfileInfo = async (req, res) => {
@@ -74,8 +75,89 @@ const changeProfilePassword = async (req, res) => {
   }
 };
 
+// GET /users/me/favorites
+const getShowFavorites = async (req, res) => {
+  const {userId} = req.user;
+
+  try {
+    const user = await User.findById(userId);
+
+    if (!user) {
+      return res.status(400).json({message: `User not found`});
+    }
+
+    const {favorites} = user;
+    const shows = await Show.find({_id: {$in: favorites}}, '-__v');
+
+    res.json({shows});
+  } catch (error) {
+    res.status(500).json({message: 'Server error'});
+  }
+};
+
+// POST /users/me/favorites
+const addShowToFavorites = async (req, res) => {
+  const {showId} = req.body;
+  const {userId} = req.user;
+
+  try {
+    const user = await User.findById(userId);
+
+    if (!user) {
+      return res.status(400).json({message: `User not found`});
+    }
+
+    const isShowAdded = user.favorites.includes(showId);
+
+    // check if show is alredy in favorites
+    if (isShowAdded) {
+      return res.status(400).json({message: 'Show is already added!'});
+    }
+
+    user.favorites.push(showId);
+    await user.save({
+      validateModifiedOnly: true,
+    });
+
+    res.json({message: 'Show successfully added'});
+  } catch (error) {
+    res.status(500).json({message: error.message});
+  }
+};
+
+// DELETE /users/me/favorites
+const deleteShowFromFavorites = async (req, res) => {
+  const {showId} = req.body;
+  const {userId} = req.user;
+
+  if (!showId) {
+    return res.status(400).json({message: 'Please send showId'});
+  }
+
+  try {
+    const user = await User.findById(userId);
+
+    if (!user) {
+      return res.status(400).json({message: `User not found`});
+    }
+
+    user.favorites.remove(showId);
+
+    await user.save({
+      validateModifiedOnly: true,
+    });
+
+    res.json({message: 'Show successfully removed'});
+  } catch (error) {
+    res.status(500).json({message: error.message});
+  }
+};
+
 module.exports = {
   getProfileInfo,
   deleteProfile,
   changeProfilePassword,
+  getShowFavorites,
+  addShowToFavorites,
+  deleteShowFromFavorites,
 };
