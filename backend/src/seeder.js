@@ -2,7 +2,7 @@
 require('dotenv').config();
 const mongoose = require('mongoose');
 const axios = require('axios').default;
-const {Show} = require('./models/Show');
+const Show = require('./models/Show');
 
 const showsQuantity = 100;
 
