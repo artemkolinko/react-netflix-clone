@@ -24,7 +24,7 @@ const seeder = async () => {
         summary,
         rating,
         genres,
-        likes: 0,
+        likes: [],
       }),
     );
 

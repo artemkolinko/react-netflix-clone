@@ -12,10 +12,10 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-app.use('/api/v1/shows', showsRouter);
 app.use('/api/v1/auth', authRouter);
 
 app.use(authMiddleware);
+app.use('/api/v1/shows', showsRouter);
 app.use('/api/v1/users/me', meRouter);
 
 app.get('*', (req, res) => {

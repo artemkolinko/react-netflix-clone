@@ -11,7 +11,7 @@ const showSchema = new mongoose.Schema({
   summary: String,
   rating: {average: Number},
   genres: [String],
-  likes: {type: Number, default: 0},
+  likes: [mongoose.Schema.Types.ObjectId],
 });
 
 const Show = mongoose.model('Show', showSchema);
