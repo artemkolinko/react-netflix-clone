@@ -6,6 +6,7 @@ const {authMiddleware} = require('./middlewares/authMiddleware');
 const authRouter = require('./routes/authRouter');
 const meRouter = require('./routes/meRouter');
 const showsRouter = require('./routes/showsRouter');
+const searchRouter = require('./routes/searchRouter');
 
 const app = express();
 
@@ -15,6 +16,7 @@ app.use(express.json());
 app.use('/api/v1/auth', authRouter);
 
 app.use(authMiddleware);
+app.use('/api/v1/search', searchRouter);
 app.use('/api/v1/shows', showsRouter);
 app.use('/api/v1/users/me', meRouter);
 

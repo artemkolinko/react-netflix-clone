@@ -22,6 +22,30 @@ const userSchema = new mongoose.Schema(
       trim: true,
     },
     favorites: [mongoose.Schema.Types.ObjectId],
+    outcomeRequests: [
+      {
+        email: {
+          type: String,
+          default: '',
+        },
+      },
+    ],
+    incomeRequests: [
+      {
+        userId: {
+          type: mongoose.Schema.Types.ObjectId,
+          ref: 'User',
+        },
+      },
+    ],
+    friendsList: [
+      {
+        friendId: {
+          type: mongoose.Schema.Types.ObjectId,
+          ref: 'User',
+        },
+      },
+    ],
   },
   {
     timestamps: true,
