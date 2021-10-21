@@ -1,0 +1,29 @@
+.navbar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 99;
+}
+.navbar .container {
+  padding: 0 50px;
+  height: 70px;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.navbar .container .left {
+  display: flex;
+  align-items: center;
+}
+
+.navbar .container .left span {
+  margin-right: 20px;
+  cursor: pointer;
+}
+
+.navbar .container .left img {
+  height: 35px;
+  margin-right: 40px;
+}
