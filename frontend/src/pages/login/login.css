@@ -1,0 +1,36 @@
+.wrapper {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--main-color);
+  color: white;
+}
+
+.login div {
+  margin-bottom: 1em;
+}
+
+.login input::placeholder {
+  color: lightgray;
+}
+
+.login label {
+  display: block;
+}
+
+.login input,
+.login label,
+.login button {
+  font-size: 1.4em;
+}
+
+.login input:focus {
+  outline-color: darkgray;
+  outline-offset: 1px;
+}
+
+.login button {
+  width: 100%;
+  cursor: pointer;
+}
