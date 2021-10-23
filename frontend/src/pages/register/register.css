@@ -1,0 +1,36 @@
+.wrapper {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--main-color);
+  color: white;
+}
+
+.register div {
+  margin-bottom: 1em;
+}
+
+.register label {
+  display: block;
+}
+
+.register input::placeholder {
+  color: lightgray;
+}
+
+.register input,
+.register label,
+.register button {
+  font-size: 1.4em;
+}
+
+.register input:focus {
+  outline-color: darkgray;
+  outline-offset: 1px;
+}
+
+.register button {
+  width: 100%;
+  cursor: pointer;
+}
