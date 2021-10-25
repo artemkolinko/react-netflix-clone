@@ -22,7 +22,9 @@
 .login input,
 .login label,
 .login button {
+  box-sizing: border-box;
   font-size: 1.4em;
+  width: 100%;
 }
 
 .login input:focus {
@@ -31,6 +33,5 @@
 }
 
 .login button {
-  width: 100%;
   cursor: pointer;
 }

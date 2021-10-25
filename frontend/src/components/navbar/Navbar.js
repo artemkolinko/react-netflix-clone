@@ -1,26 +1,49 @@
 import './navbar.css';
-import SearchIcon from '@material-ui/icons/Search';
+import {Link} from 'react-router-dom';
 import PersonIcon from '@material-ui/icons/Person';
-import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
+import Logo from '../logo/Logo';
 
 const Navbar = () => {
   return (
     <div className='navbar'>
       <div className='container'>
         <div className='left'>
-          <img
-            src='https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg'
-            alt='netflix'
-          />
-          <span>Home</span>
-          <span>Shows</span>
-          <span>Favorites</span>
-          <span>Friends</span>
+          <Logo />
+          <nav>
+            <ul className='menu'>
+              <li>
+                <Link to='/' className='link'>
+                  Home
+                </Link>
+              </li>
+              <li>
+                <Link to='/favorites' className='link'>
+                  Favorites
+                </Link>
+              </li>
+              <li>
+                <Link to='/friends' className='link'>
+                  Friends
+                </Link>
+              </li>
+            </ul>
+          </nav>
         </div>
         <div className='right'>
-          {/* <SearchIcon /> */}
-          <PersonIcon />
-          <span>log out</span>
+          <nav>
+            <ul className='menu'>
+              <li>
+                <Link to='/login' className='link'>
+                  <PersonIcon className='personIcon' /> Login
+                </Link>
+              </li>
+              <li>
+                <Link to='/register' className='link'>
+                  Register
+                </Link>
+              </li>
+            </ul>
+          </nav>
         </div>
       </div>
     </div>
