@@ -1,5 +1,6 @@
 import {useState} from 'react';
 import './register.css';
+import Logo from '../../components/logo/Logo';
 
 const Register = () => {
   const [email, setEmail] = useState('');
@@ -24,6 +25,7 @@ const Register = () => {
   return (
     <div className='wrapper'>
       <div className='register'>
+        <Logo />
         <h1>Register</h1>
         <form onSubmit={registerHandler}>
           <div>

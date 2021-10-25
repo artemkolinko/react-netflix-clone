@@ -1,5 +1,7 @@
 import {useState} from 'react';
+import {Link} from 'react-router-dom';
 import './login.css';
+import Logo from '../../components/logo/Logo';
 
 const Login = () => {
   const [email, setEmail] = useState('');
@@ -24,7 +26,9 @@ const Login = () => {
   return (
     <div className='wrapper'>
       <div className='login'>
-        <h1>Login</h1>
+        <Logo />
+
+        <h1>Log in</h1>
         <form onSubmit={loginHandler}>
           <div>
             <label htmlFor='email'>Email</label>
@@ -55,11 +59,14 @@ const Login = () => {
             />
           </div>
           <div>
-            <button type='submit'>Login</button>
+            <button type='submit'>Log in</button>
           </div>
         </form>
         <p className='info'>
-          New to Netflix? <b>Register now</b>
+          New to Netflix?{' '}
+          <Link to='/register' className='link'>
+            <b>Register now</b>
+          </Link>
         </p>
       </div>
     </div>
