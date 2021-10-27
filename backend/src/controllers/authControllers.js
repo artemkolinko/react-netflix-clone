@@ -33,7 +33,7 @@ const signin = async (req, res) => {
 
   try {
     const token = await signIn({email, password});
-    res.json({jwt_token: token});
+    res.json({email, jwt_token: token});
   } catch (err) {
     res.status(400).json({message: err.message});
   }

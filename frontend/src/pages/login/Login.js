@@ -1,11 +1,14 @@
-import {useState} from 'react';
+import {useState, useContext} from 'react';
 import {Link} from 'react-router-dom';
 import './login.css';
 import Logo from '../../components/logo/Logo';
+import {AuthContext} from '../../authContext/AuthContext';
+import {login} from '../../authContext/apiCalls';
 
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const {isFetching, dispatch} = useContext(AuthContext);
 
   const emailHandler = (e) => {
     const {value} = e.target;
@@ -18,9 +21,8 @@ const Login = () => {
   };
 
   const loginHandler = (e) => {
-    const credentials = {email, password};
-    console.log(credentials);
     e.preventDefault();
+    login(user, dispatch);
   };
 
   return (
@@ -38,8 +40,7 @@ const Login = () => {
               id='email'
               placeholder='Enter your email'
               required
-              autoComplete='off'
-              value={email}
+              autoComplete='username'
               onChange={emailHandler}
             />
           </div>
@@ -54,12 +55,13 @@ const Login = () => {
               minLength='6'
               maxLength='20'
               autoComplete='new-password'
-              value={password}
               onChange={passwordHandler}
             />
           </div>
           <div>
-            <button type='submit'>Log in</button>
+            <button type='submit' disabled={isFetching}>
+              Log in
+            </button>
           </div>
         </form>
         <p className='info'>

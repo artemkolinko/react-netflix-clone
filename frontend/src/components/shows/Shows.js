@@ -9,7 +9,7 @@ const Shows = () => {
   useEffect(() => {
     const token =
       'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MTY1YWVjNTQ3NTUwMjIwNTE0MTA5ZjYiLCJpYXQiOjE2MzQ4NDYxMTcsImV4cCI6MTYzNTQ1MDkxN30.pVTcMKi7dtKwLk3c3_RaVFEFn8l0W_xg2RmGW5TCo5Q';
-    const url = 'http://localhost:5000/api/v1/shows';
+    const url = '/shows';
     const options = {
       headers: {
         Authorization: `Bearer ${token}`,

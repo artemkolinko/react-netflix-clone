@@ -10,15 +10,15 @@ import Register from './pages/register/Register';
 import Login from './pages/login/Login';
 import Favorites from './pages/favorites/Favorites';
 import Friends from './pages/friends/Friends';
+import {AuthContext} from './authContext/AuthContext';
+import {useContext} from 'react';
 
 function App() {
-  const user = true;
+  const {user} = useContext(AuthContext);
+
   return (
     <Router>
       <Switch>
-        {/* <Route exact path='/'>
-          {user ? <Home /> : <Redirect to='/register' />}
-        </Route> */}
         <Route path='/register'>
           {!user ? <Register /> : <Redirect to='/' />}
         </Route>
