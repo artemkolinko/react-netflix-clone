@@ -1,10 +1,18 @@
 import {useState} from 'react';
+import {Link, useHistory} from 'react-router-dom';
+import Alert from '@material-ui/lab/Alert';
+import axios from 'axios';
+
 import './register.css';
+
 import Logo from '../../components/logo/Logo';
 
 const Register = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [error, setError] = useState(null);
+
+  const history = useHistory();
 
   const emailHandler = (e) => {
     const {value} = e.target;
@@ -16,10 +24,16 @@ const Register = () => {
     setPassword(value);
   };
 
-  const registerHandler = (e) => {
-    const credentials = {email, password};
-    console.log(credentials);
+  const registerHandler = async (e) => {
     e.preventDefault();
+    const user = {email, password};
+    try {
+      const res = await axios.post('/auth/register', user);
+      history.push('/login');
+    } catch (err) {
+      const {email} = err.response.data.message;
+      email ? setError(email) : setError('Error');
+    }
   };
 
   return (
@@ -60,6 +74,13 @@ const Register = () => {
             <button type='submit'>Register</button>
           </div>
         </form>
+        <p className='info'>
+          Already registered?{' '}
+          <Link to='/login' className='link'>
+            <b>Log in now</b>
+          </Link>
+        </p>
+        {error && <Alert severity='error'>{error}</Alert>}
       </div>
     </div>
   );

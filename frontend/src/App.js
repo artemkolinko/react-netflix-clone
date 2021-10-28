@@ -25,15 +25,17 @@ function App() {
         <Route path='/login'>{!user ? <Login /> : <Redirect to='/' />}</Route>
         {user ? (
           <>
-            <Route exact path='/'>
-              <Home />
-            </Route>
-            <Route path='/favorites'>
-              <Favorites />
-            </Route>
-            <Route path='/friends'>
-              <Friends />
-            </Route>
+            <Switch>
+              <Route exact path='/'>
+                <Home />
+              </Route>
+              <Route path='/favorites'>
+                <Favorites />
+              </Route>
+              <Route path='/friends'>
+                <Friends />
+              </Route>
+            </Switch>
           </>
         ) : (
           <Redirect to='/login' />
