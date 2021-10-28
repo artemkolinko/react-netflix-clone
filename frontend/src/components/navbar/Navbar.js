@@ -1,9 +1,18 @@
-import './navbar.css';
+import React, {useContext} from 'react';
 import {Link} from 'react-router-dom';
 import PersonIcon from '@material-ui/icons/Person';
+
+import './navbar.css';
 import Logo from '../logo/Logo';
+import {AuthContext} from '../../authContext/AuthContext';
+import {logout} from '../../authContext/AuthActions';
 
 const Navbar = () => {
+  const {user, dispatch} = useContext(AuthContext);
+
+  const logoutHandler = () => {
+    dispatch(logout());
+  };
   return (
     <div className='navbar'>
       <div className='container'>
@@ -32,16 +41,26 @@ const Navbar = () => {
         <div className='right'>
           <nav>
             <ul className='menu'>
-              <li>
-                <Link to='/login' className='link'>
-                  <PersonIcon className='personIcon' /> Login
-                </Link>
-              </li>
-              <li>
-                <Link to='/register' className='link'>
-                  Register
-                </Link>
-              </li>
+              {user ? (
+                <li>
+                  <span onClick={logoutHandler} className='link'>
+                    Log out
+                  </span>
+                </li>
+              ) : (
+                <>
+                  <li>
+                    <Link to='/login' className='link'>
+                      <PersonIcon className='personIcon' /> Login
+                    </Link>
+                  </li>
+                  <li>
+                    <Link to='/register' className='link'>
+                      Register
+                    </Link>
+                  </li>
+                </>
+              )}
             </ul>
           </nav>
         </div>
