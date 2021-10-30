@@ -1,18 +1,18 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useContext} from 'react';
 import ShowItem from '../showItem/ShowItem';
+import {AuthContext} from '../../authContext/AuthContext';
 
 const Shows = () => {
   const [shows, setShows] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
+  const {user} = useContext(AuthContext);
 
   useEffect(() => {
-    const token =
-      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MTY1YWVjNTQ3NTUwMjIwNTE0MTA5ZjYiLCJpYXQiOjE2MzQ4NDYxMTcsImV4cCI6MTYzNTQ1MDkxN30.pVTcMKi7dtKwLk3c3_RaVFEFn8l0W_xg2RmGW5TCo5Q';
     const url = '/shows';
     const options = {
       headers: {
-        Authorization: `Bearer ${token}`,
+        Authorization: `Bearer ${user.jwt_token}`,
       },
     };
 
