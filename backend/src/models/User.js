@@ -21,7 +21,12 @@ const userSchema = new mongoose.Schema(
       maxlength: [20, 'Maximum password length is 20 characters'],
       trim: true,
     },
-    favorites: [mongoose.Schema.Types.ObjectId],
+    favorites: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Show',
+      },
+    ],
     outcomeRequests: [
       {
         email: {
