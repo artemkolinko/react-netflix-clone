@@ -1,4 +1,5 @@
 import React, {useState, useEffect, useContext} from 'react';
+import './show.css';
 import ShowItem from '../showItem/ShowItem';
 import {AuthContext} from '../../authContext/AuthContext';
 
@@ -36,7 +37,7 @@ const Shows = () => {
   }, []);
 
   return (
-    <div>
+    <div className='shows'>
       {error && <div>{error}</div>}
       {isLoading && <div>Loading...</div>}
       {shows && shows.map((show) => <ShowItem key={show.id} item={show} />)}

@@ -1,5 +1,8 @@
 .showItem {
-  background-color: darkred;
-  padding: 5px 10px;
-  margin-bottom: 1em;
+  max-width: 375px;
+}
+
+.show-content {
+  height: 97px;
+  overflow: hidden;
 }
